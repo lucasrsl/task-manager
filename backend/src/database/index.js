@@ -7,7 +7,7 @@ class Database {
 
   init() {
     this.mongoConnection = mongoose.connect(
-      'mongodb://localhost:27017/hubtasks',
+      'mongodb+srv://ricardo:ricardo@hubtec-test-sxnej.mongodb.net/test?retryWrites=true&w=majority',
       { 
         useNewUrlParser: true,
         useFindAndModify: true,
