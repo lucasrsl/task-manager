@@ -1,4 +1,4 @@
-import User from './models/User';
+import User from '../models/User';
 import * as Yup from 'yup';
 
 class UserController {
@@ -13,8 +13,12 @@ class UserController {
       return res.status(400).json({ error: 'Erro de validação' });
     }
     
-    const userExists = User.
     const { name, email, password } = req.body;
+    const userExists = await User.findOne({ email });
+
+    if(userExists) {
+      return res.status(400).json({ error: 'Email já cadastrado' });
+    }
 
     const user = await User.create({
       name,
