@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -26,5 +26,10 @@ UserSchema.pre('save', async function() {
   user.password = await bcrypt.hashSync(user.password, 10);
 
 });
+
+
+const comparePassword = (password) => {
+  return bcrypt.compareSync(password, UserSchema.passwordHash);
+};
 
 export default mongoose.model('User', UserSchema);

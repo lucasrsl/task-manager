@@ -1,9 +1,10 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const Status = Object.freeze({
   ToDo: 'todo',
   Doing: 'doing',
   Done: 'done',
+  Late: 'late',
 });
 
 const TaskSchema = new mongoose.Schema({
