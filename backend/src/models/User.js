@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  passwordHash: {
+  password: {
     type: String,
     required: true
   },
@@ -27,9 +27,5 @@ UserSchema.pre('save', async function() {
 
 });
 
-
-const comparePassword = (password) => {
-  return bcrypt.compareSync(password, UserSchema.passwordHash);
-};
 
 export default mongoose.model('User', UserSchema);

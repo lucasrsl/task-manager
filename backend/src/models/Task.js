@@ -29,6 +29,9 @@ const TaskSchema = new mongoose.Schema({
     enum: Object.values(Status),
     default: 'todo', 
   },
+  deletedAt: {
+    type: Date,
+  },
 }, {
   timestamps: true,
 });
