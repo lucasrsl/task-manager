@@ -6,7 +6,7 @@ class TaskController {
     const schema = Yup.object().shape({
       title: Yup.string().required(),
       description: Yup.string().required(),
-      user: Yup.number().required(),
+      user: Yup.string().required(),
       deadLine: Yup.date().required(),
     });
 
@@ -67,19 +67,19 @@ class TaskController {
 
   async update(req, res) {
     const schema = Yup.object().shape({
-      taskId: Yup.number().required(),
-    });
+      taskId: Yup.string().required(),
+    });    
 
-    if(!(await schema.isValid(req.body))) {
+    if(!(await schema.isValid(req.params))) {
       return res.status(400).json({ error: 'Id da tarefa não informado' });
     }
 
-    const { title, description, user, deadLine, status } = req.body;
+    const { taskId } = req.params
+    const { title, description, deadLine, status } = req.body;
 
     const task = await Task.findByIdAndUpdate(taskId, {
       title,
       description,
-      user,
       deadLine,
       status,
     });
@@ -90,12 +90,14 @@ class TaskController {
 
   async delete(req, res) {
     const schema = Yup.object().shape({
-      taskId: Yup.number().required(),
+      taskId: Yup.string().required(),
     });
 
-    if(!(await schema.isValid(req.body))) {
+    if(!(await schema.isValid(req.params))) {
       return res.status(400).json({ error: 'Id da tarefa não informado' });
     }
+
+    const { taskId } = req.params
     
     await Task.findByIdAndUpdate(taskId, {
       deletedAt: new Date(),

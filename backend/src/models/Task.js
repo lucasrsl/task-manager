@@ -17,7 +17,7 @@ const TaskSchema = new mongoose.Schema({
     required: true,  
   },
   user: {
-    type: Number,
+    type: String,
     required: true,
   },
   deadLine: {

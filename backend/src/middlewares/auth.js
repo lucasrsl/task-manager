@@ -4,7 +4,7 @@ import JwtBlacklist from '../models/JwtBlacklist';
 
 import { promisify } from 'util';
 
-import authConfig from '../../config/auth';
+import authConfig from '../config/auth';
 
 export default async (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -15,7 +15,7 @@ export default async (req, res, next) => {
 
   const [, token] = authHeader.split(' ');
 
-  const jwtBlacklisted = JwtBlacklist.findOne({token});
+  const jwtBlacklisted = await JwtBlacklist.findOne({ token });  
 
   if(jwtBlacklisted) {
     return res.status(401).json({ error: 'Sessão inválida' });

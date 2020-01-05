@@ -1,7 +1,9 @@
-import User from '../schemas/User';
-import JwtBlacklist from '../schemas/JwtBlacklist';
+import User from '../models/User';
+import JwtBlacklist from '../models/JwtBlacklist';
 import authConfig from '../config/auth';
+
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 import * as Yup from 'yup';
 
 class SessionController {
@@ -11,7 +13,7 @@ class SessionController {
       email: Yup.string().required(),
       password: Yup.string().required(),
     });
-
+    
     if(!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Erro de validação' });
     }
