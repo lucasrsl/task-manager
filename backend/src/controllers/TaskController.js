@@ -86,8 +86,6 @@ class TaskController {
       status,
     });
 
-    console.log(task);
-
     return res.json(task);
 
   }
