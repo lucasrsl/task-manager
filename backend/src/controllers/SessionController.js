@@ -38,7 +38,14 @@ class SessionController {
   }
 
   async logout(req, res) {
-    const { token } = req.body;
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader) {
+      return res.status(401).json({ error: 'Token não informado' });
+    }
+
+    const [, token] = authHeader.split(' ');
+
     JwtBlacklist.create({ token });
 
     return res.status(200).json({ success: 'Sessão finalizada' });
