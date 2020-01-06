@@ -78,13 +78,17 @@ class TaskController {
     const { title, description, deadLine, user, status } = req.body;
     
 
-    const task = await Task.findByIdAndUpdate(taskId, {
+    await Task.findByIdAndUpdate(taskId, {
       title,
       description,
       deadLine,
       user,
       status,
     });
+
+    const task = await Task.findById(taskId);
+    console.log(task);
+    
 
     return res.json(task);
 
