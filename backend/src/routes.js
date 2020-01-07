@@ -10,7 +10,7 @@ import authMiddleware from './middlewares/auth';
 const routes = new Router();
 
 routes.post('/user', UserController.store);
-routes.post('/session', SessionController.login);
+routes.post('/session', SessionController.store);
 
 routes.use(authMiddleware);
 
@@ -18,6 +18,6 @@ routes.get('/task', TaskController.index);
 routes.post('/task', TaskController.store);
 routes.put('/task/:taskId', TaskController.update);
 routes.delete('/task/:taskId', TaskController.delete);
-routes.delete('/session', SessionController.logout);
+routes.delete('/session', SessionController.delete);
 
 export default routes;

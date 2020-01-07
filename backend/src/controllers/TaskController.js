@@ -87,9 +87,7 @@ class TaskController {
     });
 
     const task = await Task.findById(taskId);
-    console.log(task);
-    
-
+  
     return res.json(task);
 
   }

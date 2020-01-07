@@ -7,7 +7,7 @@ import bcrypt from 'bcrypt';
 import * as Yup from 'yup';
 
 class SessionController {
-  async login(req, res) {
+  async store(req, res) {
 
     const schema = Yup.object().shape({
       email: Yup.string().required(),
@@ -37,7 +37,7 @@ class SessionController {
     return res.status(200).json({ user, token });
   }
 
-  async logout(req, res) {
+  async delete(req, res) {
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
