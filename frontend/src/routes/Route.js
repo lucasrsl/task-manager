@@ -13,7 +13,6 @@ export default function RouteWrapper({
     ...rest
 }) {
     const signed = store.getState().auth.signed;
-       
 
     if(!signed && isPrivate) {
         return <Redirect to="/" />
@@ -28,7 +27,7 @@ export default function RouteWrapper({
     return (
         <Route {... rest} render={props => (
             <Layout>
-                <Component {...props} />
+                <Component {...props}  />
             </Layout>
         )} />
     )

@@ -5,7 +5,7 @@ export default reducers => {
     const persistedReducer = persistReducer({
         key: 'taskmanager',
         storage,
-        whitelist: [ 'auth', 'user', 'task' ]
+        whitelist: [ 'auth', 'user' ]
 
     }, reducers);
 
